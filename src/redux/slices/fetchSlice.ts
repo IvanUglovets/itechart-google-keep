@@ -24,6 +24,9 @@ export const fetchSlice = createSlice({
     reducers: {
         addTodo: (state, action:PayloadAction<ITodo>) => {
             state.todos.push(action.payload)
+        },
+        deleteTodo: (state,action:PayloadAction<number | string>) => {
+          state.todos = state.todos.filter(todo => todo.id !== action.payload)
         }
     },
     extraReducers: {
@@ -41,5 +44,5 @@ export const fetchSlice = createSlice({
     }
 })
 
-export const {addTodo} = fetchSlice.actions
+export const {addTodo,deleteTodo} = fetchSlice.actions
 export default fetchSlice.reducer

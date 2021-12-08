@@ -58,7 +58,7 @@ const CreateTodo: FC = () => {
                     {isShowInput ?
                         <>
                             <FormTextArea body={body} setBody={setBody}/>
-                            <SubmitButton color="primary" aria-label="add" size='small' type='submit' disabled={!title}>
+                            <SubmitButton color="primary" aria-label="add" size='small' type='submit' disabled={!(title || body)}>
                                 <AddIcon/>
                             </SubmitButton>
                         </> :
@@ -70,4 +70,4 @@ const CreateTodo: FC = () => {
 }
 
 
-export default CreateTodo;
+export gitdefault CreateTodo;

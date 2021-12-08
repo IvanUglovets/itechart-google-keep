@@ -10,7 +10,7 @@ const FormTextArea: FC<IPropsTextArea> = ({body,setBody}) => {
         <StyledTextArea
             name='body'
             value={body}
-            placeholder='Введите заметку'
+            placeholder='Заметка...'
             onChange={(e) => setBody(e.target.value)}
         />
     )

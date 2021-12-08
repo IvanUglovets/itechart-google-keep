@@ -44,7 +44,6 @@ export const StyledForm = styled.form`
   align-items: center;
   max-width: 600px;
   background-color: #f1f3f4;
-
 `
 
 export const SubmitButton = styled(Fab)`
