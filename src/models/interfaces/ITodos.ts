@@ -1,5 +1,5 @@
-export interface ITodos {
-    id: number
+export interface ITodo {
+    id: number | string
     title: string
     body?: string
     completed: boolean

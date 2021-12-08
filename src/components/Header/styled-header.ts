@@ -7,6 +7,8 @@ interface IFlexProps {
     align?: string
     backColor?: string;
     radius?: string
+    width?: string
+    margin?: string
 }
 
 
@@ -28,6 +30,8 @@ export const Flex = styled.div<IFlexProps>`
   align-items: ${props => props.align};
   background-color: ${props => props.backColor};
   border-radius: ${props => props.radius};
+  width: ${props => props.width || 'auto'};
+  margin: ${props => props.margin};
 `
 
 export const StyledInput = styled.input`

@@ -1,8 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
+import {Container} from "@mui/material";
+import CreateTodo from "../components/InputTodo/CreateTodo";
+
 
 
 const Home = () => {
-    return <h1>Home</h1>
+
+    return (
+        <Container maxWidth='lg'>
+            <CreateTodo />
+        </Container>
+    )
 }
 
 export default Home

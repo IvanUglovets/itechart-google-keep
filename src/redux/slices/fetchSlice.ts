@@ -1,9 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {fetchTodos} from "../asyncThunk/fetchTodos";
-import {ITodos} from "../../models/interfaces/ITodos";
+import {ITodo} from "../../models/interfaces/ITodos";
 
 interface IStateFetch{
-    todos: ITodos[],
+    todos: ITodo[],
     isLoading: boolean,
     error: string | null
 }
@@ -22,12 +22,15 @@ export const fetchSlice = createSlice({
     name: 'fetchTodos',
     initialState,
     reducers: {
+        addTodo: (state, action:PayloadAction<ITodo>) => {
+            state.todos.push(action.payload)
+        }
     },
     extraReducers: {
         [fetchTodos.pending.type] : (state) => {
             state.isLoading = true
         },
-        [fetchTodos.fulfilled.type] : (state,action: PayloadAction<ITodos[]>) => {
+        [fetchTodos.fulfilled.type] : (state,action: PayloadAction<ITodo[]>) => {
             state.todos = action.payload
             state.isLoading = false
         },
@@ -38,5 +41,5 @@ export const fetchSlice = createSlice({
     }
 })
 
-
+export const {addTodo} = fetchSlice.actions
 export default fetchSlice.reducer

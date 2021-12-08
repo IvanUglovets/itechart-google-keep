@@ -8,14 +8,13 @@ import Header from "./components/Header/Header";
 import {fetchTodos} from "./redux/asyncThunk/fetchTodos";
 import {useStateSelector} from "./hooks/useStateSelector";
 import {useStateDispatch} from "./hooks/useStateDispatch";
-import CircularProgress from '@mui/material/CircularProgress';
 import {Box, Typography} from "@mui/material";
+import Loader from "./components/Loader/Loader";
 
 
 const App: FC = () => {
     const dispatch = useStateDispatch()
     const {error, isLoading} = useStateSelector(state => state.todos)
-
 
     useEffect(() => {
         dispatch(fetchTodos())
@@ -29,9 +28,7 @@ const App: FC = () => {
         <>
             <Header/>
             {isLoading ?
-                <Box sx={{display: 'flex', justifyContent: "center"}}>
-                    <CircularProgress/>
-                </Box>
+                <Loader />
                 :
                 <Routes>
                     <Route path='/' element={<Home/>}/>
