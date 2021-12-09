@@ -9,8 +9,6 @@ interface IStateFetch{
 }
 
 
-
-
 const initialState : IStateFetch = {
     todos: [],
     isLoading: false,
@@ -27,6 +25,14 @@ export const fetchSlice = createSlice({
         },
         deleteTodo: (state,action:PayloadAction<number | string>) => {
           state.todos = state.todos.filter(todo => todo.id !== action.payload)
+        },
+        toggleCompleted: (state, action:PayloadAction<any>) => {
+            const index = state.todos.findIndex(todo => todo.id === action.payload.id)
+            state.todos[index].completed = action.payload.completed
+        },
+        searchTodo: (state,action:PayloadAction<string>) => {
+            const newArr = state.todos.filter(todo => todo.title.toLowerCase().includes(action.payload.toLowerCase()))
+            state.todos = newArr
         }
     },
     extraReducers: {
@@ -44,5 +50,5 @@ export const fetchSlice = createSlice({
     }
 })
 
-export const {addTodo,deleteTodo} = fetchSlice.actions
+export const {addTodo,deleteTodo,toggleCompleted, searchTodo} = fetchSlice.actions
 export default fetchSlice.reducer
