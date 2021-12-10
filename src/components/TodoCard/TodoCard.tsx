@@ -1,38 +1,14 @@
-import React, {FC, useState} from "react";
-import {Button, Card, CardActions, CardContent, Checkbox, Grid, Typography} from "@mui/material";
-import {ITodo} from "../../models/interfaces/ITodos";
-import styled from "styled-components";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import React, {FC} from "react";
+import {StyledBody,StyledTitle,StyledCard,StyledButton, StyledCardActions} from '../UI-components'
 import {IPropsTodoCard} from "./IPropsTodoCard";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {useStateDispatch} from "../../hooks/useStateDispatch";
-import {deleteTodo} from "../../redux/slices/fetchSlice";
+import {deleteTodo, toggleCompleted} from "../../redux/slices/todoSlice";
+import {CardContent, Checkbox, Grid} from "@mui/material";
+import {addTodoToBasket} from "../../redux/slices/basketSlice";
 
-const StyledCard = styled(Card)`
-  &:hover {
-    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);;
-  }
-`
-const StyledCardActions = styled(CardActions)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-`
 
-const StyledTitle = styled.span`
-  letter-spacing: .00625em;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.5rem;
-`
 
-const StyledBody = styled.div`
-  letter-spacing: .01428571em;
-  font-family: Roboto,Arial,sans-serif;
-  font-size: .875rem;
-  font-weight: 400;
-  line-height: 1.25rem;
-`
 
 
 const TodoCard: FC<IPropsTodoCard> = ({todo}) => {
@@ -40,23 +16,29 @@ const TodoCard: FC<IPropsTodoCard> = ({todo}) => {
     const {id,title, body, completed} = todo
 
     const handleDeleteTodo = () => {
+        dispatch(addTodoToBasket(todo))
         dispatch(deleteTodo(id))
+    }
+
+
+    const handleChangeCompleted = () => {
+        dispatch(toggleCompleted({id,completed: !completed}))
     }
 
     return (
         <Grid item>
             <StyledCard>
                 <CardContent>
-                    <StyledTitle>
+                    <StyledTitle decoration={completed ? 'line-through' : 'none'}>
                         {title}
                     </StyledTitle>
-                    <StyledBody>
+                    <StyledBody decoration={completed ? 'line-through' : 'none'}>
                         {body}
                     </StyledBody>
                 </CardContent>
                 <StyledCardActions>
-                    <Button size="small" sx={{color: 'black',minWidth: '10px'}} onClick={handleDeleteTodo}><DeleteOutlineIcon/></Button>
-                    <Checkbox checked={completed} />
+                    <StyledButton size="small" onClick={handleDeleteTodo}><DeleteOutlineIcon/></StyledButton>
+                    <Checkbox checked={completed} onChange={handleChangeCompleted}/>
                 </StyledCardActions>
             </StyledCard>
         </Grid>

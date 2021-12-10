@@ -1,15 +1,13 @@
-import React from "react";
+import React from 'react';
 import {useStateSelector} from "../../hooks/useStateSelector";
 import {Grid} from "@mui/material";
-import TodoCard from "../TodoCard/TodoCard";
 import {ITodo} from "../../models/interfaces/ITodos";
+import BasketCard from "../BaskerCard/BasketCard";
 
-
-
-const TodoList = () => {
-    const {todos} = useStateSelector(state => state.todos);
+const BasketList = () => {
+    const {basketTodos} = useStateSelector(state => state.basket)
     const {search} = useStateSelector(state => state.search)
-    const filterTodos = todos.filter(todo => todo.title.toLowerCase().includes(search.toLowerCase()))
+    const filterBasketTodos = basketTodos.filter(item => item.title.toLowerCase().includes(search.toLowerCase()))
     return (
         <Grid
             container
@@ -19,9 +17,9 @@ const TodoList = () => {
             justifyContent="flex-start"
             sx={{mt: '2rem'}}
         >
-            {filterTodos && filterTodos.map((todo: ITodo) => <TodoCard key={todo.id} todo={todo}/>)}
+            {filterBasketTodos && filterBasketTodos.map((item: ITodo) => <BasketCard key={item.id} item={item}/>)}
         </Grid>
-    )
-}
+    );
+};
 
-export default TodoList;
+export default BasketList;

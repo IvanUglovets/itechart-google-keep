@@ -3,8 +3,8 @@ import {fetchTodos} from "../asyncThunk/fetchTodos";
 import {ITodo} from "../../models/interfaces/ITodos";
 
 interface IStateFetch{
-    todos: ITodo[],
-    isLoading: boolean,
+    todos: ITodo[]
+    isLoading: boolean
     error: string | null
 }
 
@@ -16,30 +16,28 @@ const initialState : IStateFetch = {
 }
 
 
-export const fetchSlice = createSlice({
+export const todoSlice = createSlice({
     name: 'fetchTodos',
     initialState,
     reducers: {
         addTodo: (state, action:PayloadAction<ITodo>) => {
             state.todos.push(action.payload)
         },
-        deleteTodo: (state,action:PayloadAction<number | string>) => {
+        deleteTodo: (state:IStateFetch,action:PayloadAction<number | string>) => {
           state.todos = state.todos.filter(todo => todo.id !== action.payload)
         },
-        toggleCompleted: (state, action:PayloadAction<any>) => {
+        toggleCompleted: (state:IStateFetch, action:PayloadAction<any>) => {
             const index = state.todos.findIndex(todo => todo.id === action.payload.id)
             state.todos[index].completed = action.payload.completed
         },
-        searchTodo: (state,action:PayloadAction<string>) => {
-            const newArr = state.todos.filter(todo => todo.title.toLowerCase().includes(action.payload.toLowerCase()))
-            state.todos = newArr
-        }
+
     },
     extraReducers: {
         [fetchTodos.pending.type] : (state) => {
             state.isLoading = true
         },
         [fetchTodos.fulfilled.type] : (state,action: PayloadAction<ITodo[]>) => {
+
             state.todos = action.payload
             state.isLoading = false
         },
@@ -50,5 +48,5 @@ export const fetchSlice = createSlice({
     }
 })
 
-export const {addTodo,deleteTodo,toggleCompleted, searchTodo} = fetchSlice.actions
-export default fetchSlice.reducer
+export const {addTodo,deleteTodo,toggleCompleted} = todoSlice.actions
+export default todoSlice.reducer

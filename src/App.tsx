@@ -8,7 +8,7 @@ import Header from "./components/Header/Header";
 import {fetchTodos} from "./redux/asyncThunk/fetchTodos";
 import {useStateSelector} from "./hooks/useStateSelector";
 import {useStateDispatch} from "./hooks/useStateDispatch";
-import {Box, Typography} from "@mui/material";
+import { Typography} from "@mui/material";
 import Loader from "./components/Loader/Loader";
 
 

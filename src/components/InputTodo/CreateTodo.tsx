@@ -1,12 +1,12 @@
 import React, {FC, useState} from "react";
-import {Flex} from '../Header/styled-header'
+import {Flex} from '../UI-components'
 import {useStateSelector} from "../../hooks/useStateSelector";
 import {useStateDispatch} from "../../hooks/useStateDispatch";
 import {closeInput, showInput} from "../../redux/slices/toggleSlice";
 import AddIcon from '@mui/icons-material/Add';
 import {nanoid} from "nanoid";
 import {ITodo} from "../../models/interfaces/ITodos";
-import {addTodo} from "../../redux/slices/fetchSlice";
+import {addTodo} from "../../redux/slices/todoSlice";
 import {Wrapper, StyledInput, StyledForm, StyledTextArea, SubmitButton} from "./styled-inputTodo";
 import FormTextArea from "../FormTextArea/FormTextArea";
 import FormInput from "../FormInput/FormInput";
@@ -70,4 +70,4 @@ const CreateTodo: FC = () => {
 }
 
 
-export gitdefault CreateTodo;
+export default CreateTodo;
