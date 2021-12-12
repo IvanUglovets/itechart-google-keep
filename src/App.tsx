@@ -17,7 +17,6 @@ const App: FC = () => {
     if(error) {
         return <Typography variant='h3' component='h1'>Упс...Произошла ошибка: {error}</Typography>
     }
-
     return (
         <>
             <Header/>

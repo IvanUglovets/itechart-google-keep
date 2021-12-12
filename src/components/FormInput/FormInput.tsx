@@ -6,7 +6,7 @@ import {IPropsInput} from "./IPropsInput";
 
 
 
-const FormInput: FC<IPropsInput> = ({title,setTitle, handleClickInput,isShowInput}) => {
+const FormInput: FC<IPropsInput> = ({title,setTitle, handleClickInput,isShowInput,handleFocus}) => {
     return (
         <StyledInput
             onClick={handleClickInput}
@@ -15,6 +15,7 @@ const FormInput: FC<IPropsInput> = ({title,setTitle, handleClickInput,isShowInpu
             name='title'
             value={title}
             onChange={(e) => setTitle(e.target.value)}
+            onFocus={handleFocus}
         />
     )
 }

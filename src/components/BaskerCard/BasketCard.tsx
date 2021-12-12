@@ -18,7 +18,9 @@ interface IPropsBasketCard {
    &:hover::after {
      content: 'Восстановить';
      text-transform: capitalize;
-     top: 50%;
+     position: absolute;
+     top: 88%;
+     left: -100%;
      font-size: 10px;
      display: block;
      color: black;
@@ -47,8 +49,8 @@ const BasketCard: FC<IPropsBasketCard> = ({item}) => {
 
     return (
         <>
-            <Grid item position='relative'>
-                <StyledCard>
+            <Grid item>
+                <StyledCard sx={{overflow: 'visible'}}>
                     <CardContent>
                         <StyledTitle decoration={completed ? 'line-through' : 'none'}>
                             {title}

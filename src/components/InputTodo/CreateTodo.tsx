@@ -29,6 +29,10 @@ const CreateTodo: FC = () => {
         dispatch(showInput())
     }
 
+    const handleFocus = () => {
+        dispatch(showInput())
+    }
+
     const formSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const todo: ITodo = {
@@ -52,6 +56,7 @@ const CreateTodo: FC = () => {
                         handleClickInput={handleClickInput}
                         title={title}
                         setTitle={setTitle}
+                        handleFocus={handleFocus}
                     />
                     {isShowInput ?
                         <>
