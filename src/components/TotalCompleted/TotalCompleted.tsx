@@ -10,7 +10,7 @@ const TotalCompleted = () => {
     const countCompleted = todos.filter(todo => todo.completed).length
     return (
         <Flex justify='center' align='center'>
-            <StyledTitleCompleted>Количество выполненых: {countCompleted}</StyledTitleCompleted>
+            {todos.length > 0 ? <StyledTitleCompleted>Количество выполненых: {countCompleted}</StyledTitleCompleted> : null}
         </Flex>
     );
 };

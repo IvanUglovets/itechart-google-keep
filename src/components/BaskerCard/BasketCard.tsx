@@ -7,26 +7,25 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import {useStateDispatch} from "../../hooks/useStateDispatch";
 import {addTodo} from "../../redux/slices/todoSlice";
 import {deleteOneCard} from "../../redux/slices/basketSlice";
+import styled from "styled-components";
 
 interface IPropsBasketCard {
     item: ITodo
 }
 
-// const StyledRestore = styled(StyledButton)`
-//   position: relative;
-//   display: block;
-//   &:hover::after {
-//     content: 'Восстановить';
-//     position: absolute;
-//     text-transform: capitalize;
-//     font-size: 10px;
-//     display: block;
-//     color: black;
-//     padding: 5px 1rem;
-//     border-radius: 8px;
-//   }
-//
-// `
+ const StyledRestore = styled(StyledButton)`
+   display: block;
+   &:hover::after {
+     content: 'Восстановить';
+     text-transform: capitalize;
+     top: 50%;
+     font-size: 10px;
+     display: block;
+     color: black;
+     padding: 5px 1rem;
+     border-radius: 8px;
+   }
+ `
 
 
 const BasketCard: FC<IPropsBasketCard> = ({item}) => {
@@ -61,7 +60,7 @@ const BasketCard: FC<IPropsBasketCard> = ({item}) => {
                     </CardContent>
                     <Flex justify='space-between' align='center'>
                         <StyledButton size="small" onClick={deleteOneCardFromBasket}><DeleteOutlineIcon/></StyledButton>
-                        <StyledButton size='small' onClick={restoreTodo}><RestoreFromTrashIcon/></StyledButton>
+                        <StyledRestore size='small' onClick={restoreTodo}><RestoreFromTrashIcon/></StyledRestore>
                     </Flex>
                 </StyledCard>
             </Grid>
