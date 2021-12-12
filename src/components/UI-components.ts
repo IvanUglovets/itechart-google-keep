@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Button, Card, CardActions} from "@mui/material";
+import {Button, Card} from "@mui/material";
 
 
 interface IFlexProps {
@@ -36,6 +36,14 @@ export const StyledBody = styled.div<textDecoration>`
   text-decoration: ${props => props.decoration || 'none'};
 `
 
+export const StyledDate = styled.span`
+  display: inline-block;
+  letter-spacing: .01428571em;
+  font-size: .675rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+`
+
 export const Flex = styled.div<IFlexProps>`
   display: flex;
   flex-direction: ${props => props.direction};
@@ -54,12 +62,6 @@ export const StyledCard = styled(Card)`
   }
 `
 
-export const StyledCardActions = styled(CardActions)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-`
 
 
 

@@ -22,7 +22,7 @@ const Header = () => {
 
     useEffect(() => {
         dispatch(getSearchValue(search))
-    }, [search])
+    }, [search,dispatch])
 
 
     return (

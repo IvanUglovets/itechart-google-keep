@@ -18,10 +18,13 @@ export const basketSlice = createSlice({
         },
         deleteAllItemsInBasket: (state:IStateBasket) => {
             state.basketTodos = []
+        },
+        deleteOneCard: (state: IStateBasket,action:PayloadAction<string | number>) => {
+            state.basketTodos = state.basketTodos.filter(item => item.id !== action.payload)
         }
     }
 })
 
 
-export const {addTodoToBasket,deleteAllItemsInBasket} = basketSlice.actions
+export const {addTodoToBasket,deleteAllItemsInBasket,deleteOneCard} = basketSlice.actions
 export default basketSlice.reducer

@@ -18,7 +18,7 @@ const App: FC = () => {
 
     useEffect(() => {
         dispatch(fetchTodos())
-    }, [])
+    }, [dispatch])
 
     if(error) {
         return <Typography variant='h3' component='h1'>Упс...Произошла ошибка: {error}</Typography>

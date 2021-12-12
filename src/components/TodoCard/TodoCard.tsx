@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {StyledBody,StyledTitle,StyledCard,StyledButton, StyledCardActions} from '../UI-components'
+import {StyledBody,StyledTitle,StyledCard,StyledButton, StyledDate, Flex} from '../UI-components'
 import {IPropsTodoCard} from "./IPropsTodoCard";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {useStateDispatch} from "../../hooks/useStateDispatch";
@@ -13,7 +13,7 @@ import {addTodoToBasket} from "../../redux/slices/basketSlice";
 
 const TodoCard: FC<IPropsTodoCard> = ({todo}) => {
     const dispatch = useStateDispatch()
-    const {id,title, body, completed} = todo
+    const {id,title, body, completed,date} = todo
 
     const handleDeleteTodo = () => {
         dispatch(addTodoToBasket(todo))
@@ -35,11 +35,14 @@ const TodoCard: FC<IPropsTodoCard> = ({todo}) => {
                     <StyledBody decoration={completed ? 'line-through' : 'none'}>
                         {body}
                     </StyledBody>
+                    <StyledDate>
+                        {date ?  `Cоздана ${date}` : null}
+                    </StyledDate>
                 </CardContent>
-                <StyledCardActions>
+                <Flex justify='space-between' align='center'>
                     <StyledButton size="small" onClick={handleDeleteTodo}><DeleteOutlineIcon/></StyledButton>
                     <Checkbox checked={completed} onChange={handleChangeCompleted}/>
-                </StyledCardActions>
+                </Flex>
             </StyledCard>
         </Grid>
     )

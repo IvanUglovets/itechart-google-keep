@@ -17,7 +17,7 @@ const TodoList = () => {
             alignItems="center"
             direction="row"
             justifyContent="flex-start"
-            sx={{mt: '2rem'}}
+            sx={{mt: '1rem'}}
         >
             {filterTodos && filterTodos.map((todo: ITodo) => <TodoCard key={todo.id} todo={todo}/>)}
         </Grid>

@@ -7,9 +7,10 @@ import AddIcon from '@mui/icons-material/Add';
 import {nanoid} from "nanoid";
 import {ITodo} from "../../models/interfaces/ITodos";
 import {addTodo} from "../../redux/slices/todoSlice";
-import {Wrapper, StyledInput, StyledForm, StyledTextArea, SubmitButton} from "./styled-inputTodo";
+import {Wrapper, StyledForm,SubmitButton} from "./styled-inputTodo";
 import FormTextArea from "../FormTextArea/FormTextArea";
 import FormInput from "../FormInput/FormInput";
+import {getFullDate} from "../../models/date/getFullDate";
 
 
 const CreateTodo: FC = () => {
@@ -30,17 +31,14 @@ const CreateTodo: FC = () => {
 
     const formSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        // const todos = JSON.parse(localStorage.getItem('todos')!)
         const todo: ITodo = {
             id: nanoid(8),
             title,
             body,
-            completed: false
+            completed: false,
+            date: getFullDate()
         }
-        // todos.push(todo)
         dispatch(addTodo(todo))
-        // localStorage.clear()
-        // localStorage.setItem('todos',JSON.stringify(todos))
         clearInputs()
         dispatch(closeInput())
     }

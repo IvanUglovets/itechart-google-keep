@@ -4,17 +4,12 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import {FC} from "react";
+import { IPropsModal } from './modalInterface';
 
-interface IPropsModal{
-    open: boolean
-    handleClose: () => void
-    deleteAll: () => void
-}
+
 
 const Modal: FC<IPropsModal> = ({open,handleClose,deleteAll}) => {
-
     return (
         <div>
             <Dialog
