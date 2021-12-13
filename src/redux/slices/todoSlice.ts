@@ -8,6 +8,16 @@ interface IStateTodo {
 
 }
 
+interface ISaving{
+    id: string
+    text: string
+}
+
+interface IToggle {
+    id: string
+    completed: boolean
+
+}
 
 const initialState: IStateTodo = {
     todos: [],
@@ -30,8 +40,13 @@ export const todoSlice = createSlice({
             const index = state.todos.findIndex(todo => todo.id === action.payload.id)
             state.todos[index].completed = action.payload.completed
         },
-    },
+        savingText: (state:IStateTodo, action:PayloadAction<any>) => {
+            const index = state.todos.findIndex(todo => todo.id === action.payload.id)
+            state.todos[index].title = action.payload.text
+        }
+    }
+
 })
 
-export const {addTodo, deleteTodo, toggleCompleted} = todoSlice.actions
+export const {addTodo, deleteTodo, toggleCompleted,savingText} = todoSlice.actions
 export default todoSlice.reducer

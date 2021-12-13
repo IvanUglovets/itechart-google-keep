@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {StyledTitle, StyledBody, StyledButton, StyledCard, StyledDate, Flex} from '../UI-components'
+import {StyledTitle, StyledBody, StyledCard, StyledDate, Flex} from '../UI-components'
 import {CardContent, Grid} from "@mui/material";
 import RestoreFromTrashIcon from '@mui/icons-material/RestoreFromTrash';
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
@@ -10,7 +10,9 @@ import {StyledDelete, StyledRestore } from './styled-basket-card';
 import {IPropsBasketCard} from "./ICard";
 
 
+
 const BasketCard: FC<IPropsBasketCard> = ({item}) => {
+
     const dispatch = useStateDispatch()
     const {title, body, id, completed, date} = item
 
@@ -35,7 +37,7 @@ const BasketCard: FC<IPropsBasketCard> = ({item}) => {
                         <StyledBody decoration={completed ? 'line-through' : 'none'}>
                             {body}
                         </StyledBody>
-                        <StyledDate>{date ? `Cоздана ${date}` : null}</StyledDate>
+                        <StyledDate>{date}</StyledDate>
                     </CardContent>
                     <Flex justify='space-between' align='center'>
                         <StyledDelete size="small" onClick={deleteOneCardFromBasket}><DeleteOutlineIcon/></StyledDelete>

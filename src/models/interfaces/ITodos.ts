@@ -1,6 +1,5 @@
 export interface ITodo {
-    userId?: number
-    id: number | string
+    id: string
     title: string
     body?: string
     date?: string
