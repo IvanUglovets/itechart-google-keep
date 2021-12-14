@@ -1,14 +1,11 @@
 import React, {FC} from 'react';
-
-interface IPropsEdit {
-    saveText: string
-    handleSaveChange: React.Dispatch<React.SetStateAction<string>> | any
-}
+import { StyledInputEdit } from './styled-edit-input';
+import {IPropsEdit} from "./IEditInput";
 
 const InputEdit: FC<IPropsEdit> = ({saveText, handleSaveChange}) => {
     return (
         <>
-            <input type="text" value={saveText} onChange={(e) => handleSaveChange(e.target.value)}/>
+            <StyledInputEdit type="text" value={saveText} onChange={(e) => handleSaveChange(e.target.value)}/>
         </>
     );
 };

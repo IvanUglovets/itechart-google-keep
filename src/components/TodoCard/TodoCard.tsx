@@ -3,66 +3,87 @@ import {StyledBody, StyledTitle, StyledCard, StyledButton, StyledDate, Flex} fro
 import {IPropsTodoCard} from "./IPropsTodoCard";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {useStateDispatch} from "../../hooks/useStateDispatch";
-import {deleteTodo, savingText, toggleCompleted} from "../../redux/slices/todoSlice";
+import {deleteTodo, savingBody, savingText, toggleCompleted} from "../../redux/slices/todoSlice";
 import {CardContent, Checkbox, Grid} from "@mui/material";
 import {addTodoToBasket} from "../../redux/slices/basketSlice";
 import {StyledEditButton} from "./styled-todo-card";
-import {Edit} from "@mui/icons-material";
-import SaveIcon from '@mui/icons-material/Save';
 import InputEdit from "../EditInput/InputEdit";
+import {Edit, Save} from "./styled-todo-card";
+
 
 
 const TodoCard: FC<IPropsTodoCard> = ({todo}) => {
     const {id, title, body, completed, date} = todo
 
-    const [isEdit, setIsEdit] = useState<boolean>(false)
-    const [saveTitle,setSaveTitle] = useState<string>(title)
+    const [isEditTitle, setIsEditTitle] = useState<boolean>(false)
+    const [isEditBody, setIsEditBody] = useState<boolean>(false)
+    const [saveTitle, setSaveTitle] = useState<string>(title)
+    const [saveBody, setSaveBody] = useState<string>(body)
+
     const dispatch = useStateDispatch()
 
-    const handleDeleteTodo = () => {
+    const handleDeleteTodo = (): void => {
         dispatch(addTodoToBasket(todo))
         dispatch(deleteTodo(id))
     }
 
-    const handleChangeCompleted = () => {
+    const handleChangeCompleted = (): void => {
         dispatch(toggleCompleted({id, completed: !completed}))
     }
 
-    const editTitle = () => {
-         setIsEdit(true)
+    const editTitle = () : void => {
+        setIsEditTitle(true)
     }
 
-    const saveTitleChange = () => {
-        setIsEdit(false)
+    const saveTitleChange = () : void => {
         dispatch(savingText({id, text: saveTitle}))
+        setIsEditTitle(false)
     }
 
-    console.log(todo)
+    const editBody = () : void => {
+       setIsEditBody(true)
+    }
+
+    const saveBodyChange = () : void => {
+        dispatch(savingBody({id, text: saveBody}))
+        setIsEditBody(false)
+    }
 
     return (
         <Grid item>
             <StyledCard>
                 <CardContent>
-                    {isEdit ?
+
+
+                    {isEditTitle ?
                         <div>
-                            <InputEdit saveText={saveTitle} handleSaveChange={setSaveTitle} />
-                            <StyledEditButton onClick={saveTitleChange}><SaveIcon /></StyledEditButton>
+                            <InputEdit saveText={saveTitle} handleSaveChange={setSaveTitle}/>
+                            <StyledEditButton onClick={saveTitleChange}><Save/></StyledEditButton>
                         </div>
                         : <StyledTitle decoration={completed ? 'line-through' : 'none'}>
                             {title}
                             {saveTitle && <StyledEditButton size='small' onClick={editTitle}><Edit/></StyledEditButton>}
                         </StyledTitle>
                     }
-                    <StyledBody decoration={completed ? 'line-through' : 'none'}>
-                        {body}
-                    </StyledBody>
-                    <StyledDate>
-                        {date}
-                    </StyledDate>
+
+                    {isEditBody ?
+                        <div>
+                            <InputEdit saveText={saveBody} handleSaveChange={setSaveBody}/>
+                            <StyledEditButton onClick={saveBodyChange}><Save/></StyledEditButton>
+                        </div>
+                        :
+                        <StyledBody decoration={completed ? 'line-through' : 'none'}>
+                            {body}
+                            {saveBody &&
+                            <StyledEditButton size='small' onClick={editBody}><Edit/></StyledEditButton>}
+                        </StyledBody>
+                    }
+
+                    <StyledDate>{date}</StyledDate>
                 </CardContent>
                 <Flex justify='space-between' align='center'>
-                    <StyledButton size="small" onClick={handleDeleteTodo}><DeleteOutlineIcon/></StyledButton>
-                    <Checkbox checked={completed} onChange={handleChangeCompleted}/>
+                    <StyledButton size="small" onClick={handleDeleteTodo} disabled={(isEditBody || isEditTitle)}><DeleteOutlineIcon/></StyledButton>
+                    <Checkbox checked={completed} onChange={handleChangeCompleted} disabled={(isEditBody || isEditTitle)}/>
                 </Flex>
             </StyledCard>
         </Grid>
