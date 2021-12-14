@@ -3,9 +3,6 @@ import {ITodo} from "../../models/interfaces/ITodos";
 
 interface IStateTodo {
     todos: ITodo[]
-    isLoading: boolean
-    error: string | null
-
 }
 
 interface ISaving{
@@ -21,8 +18,6 @@ interface IToggle {
 
 const initialState: IStateTodo = {
     todos: [],
-    isLoading: false,
-    error: null,
 }
 
 
