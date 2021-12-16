@@ -7,6 +7,7 @@ import {Basket, Home, NotFound} from "./pages";
 import Header from "./components/Header/Header";
 
 const App: FC = () => {
+
     return (
         <>
             <Header/>

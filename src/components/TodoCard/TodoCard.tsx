@@ -1,12 +1,12 @@
 import React, {FC, useState} from "react";
-import {StyledBody, StyledTitle, StyledCard, StyledButton, StyledDate, Flex} from '../UI-components'
+import {StyledBody, StyledTitle, StyledCard,  StyledDate, Flex} from '../UI-components'
 import {IPropsTodoCard} from "./IPropsTodoCard";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {useStateDispatch} from "../../hooks/useStateDispatch";
 import {deleteTodo, savingBody, savingText, toggleCompleted} from "../../redux/slices/todoSlice";
 import {CardContent, Checkbox, Grid} from "@mui/material";
 import {addTodoToBasket} from "../../redux/slices/basketSlice";
-import {StyledEditButton} from "./styled-todo-card";
+import {StyledEditButton, StyledToBasket} from "./styled-todo-card";
 import InputEdit from "../EditInput/InputEdit";
 import {Edit, Save} from "./styled-todo-card";
 
@@ -51,7 +51,7 @@ const TodoCard: FC<IPropsTodoCard> = ({todo}) => {
 
     return (
         <Grid item>
-            <StyledCard>
+            <StyledCard sx={{overflow: "visible"}}>
                 <CardContent>
 
 
@@ -82,7 +82,13 @@ const TodoCard: FC<IPropsTodoCard> = ({todo}) => {
                     <StyledDate>{date}</StyledDate>
                 </CardContent>
                 <Flex justify='space-between' align='center'>
-                    <StyledButton size="small" onClick={handleDeleteTodo} disabled={(isEditBody || isEditTitle)}><DeleteOutlineIcon/></StyledButton>
+                    <StyledToBasket
+                        size="small"
+                        onClick={handleDeleteTodo}
+                        disabled={(isEditBody || isEditTitle)}
+                    >
+                        <DeleteOutlineIcon/>
+                    </StyledToBasket>
                     <Checkbox checked={completed} onChange={handleChangeCompleted} disabled={(isEditBody || isEditTitle)}/>
                 </Flex>
             </StyledCard>

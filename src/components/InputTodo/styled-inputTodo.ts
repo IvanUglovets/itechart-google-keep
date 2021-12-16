@@ -50,7 +50,6 @@ export const SubmitButton = styled(Fab)`
   position: absolute;
   right: -1rem;
   bottom: -1rem;
-
   &:hover {
     background-color: yellow;
     color: green;

@@ -1,10 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-type showInput = {
+type InputType = {
     isShowInput: boolean
 }
 
-const initialState: showInput = {
+const initialState: InputType = {
     isShowInput: false
 }
 

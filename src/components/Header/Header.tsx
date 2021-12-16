@@ -53,7 +53,6 @@ const Header = () => {
                     </Flex>
                 </Toolbar>
             </StyledAppBar>
-
         </Box>
     )
 }
